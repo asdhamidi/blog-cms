@@ -1,4 +1,4 @@
-# React Blog Application
+# Blog CMS
 
 ## Overview
 This is a react-based application I developed to manage my blog which can be read over at my portfolio website.
