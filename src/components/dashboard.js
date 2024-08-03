@@ -1,10 +1,11 @@
 import React from "react";
 
-const Dashboard = ({ posts, setEditor, openEditor, deletePost }) => {
+const Dashboard = ({ posts, setEditor, openEditor, deletePost, setloggedIn }) => {
   return (
     <div className="dashboard">
       <nav>
         <h1>Blog Dashboard</h1>
+        <div className="dash-control">
         <button
           className="new-btn"
           onClick={() => {
@@ -13,6 +14,17 @@ const Dashboard = ({ posts, setEditor, openEditor, deletePost }) => {
         >
           New Post
         </button>
+        <button
+          className="logout-btn"
+          onClick={() => {
+            setloggedIn(false);
+            localStorage.removeItem("token");
+          }}
+        >
+          Log Out
+        </button>
+
+        </div>
       </nav>
       <hr />
       <div className="posts">

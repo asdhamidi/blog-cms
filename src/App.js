@@ -2,17 +2,18 @@ import "./App.css";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard";
 import Editor from "./components/editor";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import axiosInstance from "./components/api-handling";
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [editor, setEditor] = useState(false);
   const [currentPost, setCurrentPost] = useState([]);
+  const [loggedIn, setloggedIn] = useState(false);
 
   const openEditor = (id) => {
-    axios
-      .get("https://blog-api-h1by.vercel.app/posts/" + id)
+    axiosInstance
+      .get("/posts/" + id)
       .then((response) => {
         setCurrentPost(response.data);
       })
@@ -28,74 +29,78 @@ function App() {
   };
 
   const updatePost = () => {
-    axios
-      .put(
-        "https://blog-api-h1by.vercel.app/post/" + currentPost._id,
-        currentPost
-      )
+    axiosInstance
+      .put("/posts/" + currentPost._id, currentPost)
       .then((response) => {
-        console.log(response.data);
+        setCurrentPost([]);
+        setEditor(false);
+        loadPosts();
       })
       .catch((error) => {
         console.error(error);
       });
-    setCurrentPost([]);
-    setEditor(false);
   };
 
   const publishPost = () => {
-    axios
-      .post("https://blog-api-h1by.vercel.app/post", currentPost)
+    axiosInstance
+      .post("/posts", currentPost)
       .then((response) => {
-        console.log(response.data);
+        setCurrentPost([]);
+        setEditor(false);
       })
       .catch((error) => {
         console.error(error);
       });
-    setCurrentPost([]);
-    setEditor(false);
   };
 
   const deletePost = (id) => {
-    axios
-      .delete("https://blog-api-h1by.vercel.app/post/" + id)
+    axiosInstance
+      .delete("/posts/" + id)
       .then((response) => {
-        console.log(response.data);
+        loadPosts();
       })
       .catch((error) => {
         console.error(error);
       });
-    setCurrentPost([]);
-    setEditor(false);
   };
 
-  useEffect(() => {
-    axios
-      .get("https://blog-api-h1by.vercel.app/posts")
+  const loadPosts = () => {
+    axiosInstance
+      .get("/posts")
       .then((response) => {
         setPosts(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  };
 
   return (
     <div className="App">
-      {editor === false && (<Dashboard
-        posts={posts}
-        setEditor={setEditor}
-        openEditor={openEditor}
-        deletePost={deletePost}
-      />)}
-      {editor === true && (
-        <Editor
-          post={currentPost}
-          setPost={setCurrentPost}
-          closeButton={closeEditor}
-          updateButton={updatePost}
-          postButton={publishPost}
-        />
+      {loggedIn === false && (
+        <Login setloggedIn={setloggedIn} loadPosts={loadPosts} />
+      )}
+      {loggedIn === true && (
+        <>
+          {editor === false && (
+            <Dashboard
+              posts={posts}
+              setEditor={setEditor}
+              openEditor={openEditor}
+              deletePost={deletePost}
+              setloggedIn={setloggedIn}
+            />
+          )}
+          {editor === true && (
+            <Editor
+              post={currentPost}
+              setPost={setCurrentPost}
+              closeButton={closeEditor}
+              updateButton={updatePost}
+              postButton={publishPost}
+            />
+          )}
+        </>
       )}
     </div>
   );

@@ -9,7 +9,7 @@ const Editor = ({ post, setPost, closeButton, postButton, updateButton }) => {
         <button className="back-btn" onClick={closeButton}>
           Back
         </button>
-        {post._id !== undefined && <h1>Editing Blog</h1>}
+        {post._id !== undefined && <h1>Editing {post.title}</h1>}
         {post._id === undefined && <h1>New Blog</h1>}
         {post._id !== undefined && (
           <button className="submit-btn" onClick={updateButton}>
@@ -22,6 +22,7 @@ const Editor = ({ post, setPost, closeButton, postButton, updateButton }) => {
           </button>
         )}
       </div>
+      <hr/>
       <div className="editor-content">
         <label>Title: </label>
         <input
