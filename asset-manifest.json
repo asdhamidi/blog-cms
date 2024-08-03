@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/asdhamidi/blog-cms/static/css/main.8b0a78ff.css",
+    "main.js": "/asdhamidi/blog-cms/static/js/main.0de02fab.js",
+    "index.html": "/asdhamidi/blog-cms/index.html",
+    "main.8b0a78ff.css.map": "/asdhamidi/blog-cms/static/css/main.8b0a78ff.css.map",
+    "main.0de02fab.js.map": "/asdhamidi/blog-cms/static/js/main.0de02fab.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8b0a78ff.css",
+    "static/js/main.0de02fab.js"
+  ]
+}
