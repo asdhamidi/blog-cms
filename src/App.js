@@ -47,6 +47,7 @@ function App() {
       .then((response) => {
         setCurrentPost([]);
         setEditor(false);
+        loadPosts();
       })
       .catch((error) => {
         console.error(error);
