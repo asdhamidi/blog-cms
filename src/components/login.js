@@ -44,79 +44,83 @@ const Login = ({ loadPosts, setloggedIn }) => {
 
   return (
     <div className="front-page">
-      <div className="front-page-options">
-        <button
-          className={login}
-          onClick={() => {
-            setlogin("active-btn");
-            setRegisterClass("");
-            setregister(false);
-          }}
-        >
-          Login
-        </button>
-        <button
-          className={registerClass}
-          onClick={() => {
-            setlogin("");
-            setRegisterClass("active-btn");
-            setregister(true);
-          }}
-        >
-          Register
-        </button>
+      <div className="headings">
+      {register === false && (<h1>Login</h1>)}
+      {register === true && (<h1>Register</h1>)}
       </div>
-      {register === false && (
-        <>
-          <h1>login</h1>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button className="submit-btn" onClick={handleLogin}>
+      <div className="front-page-contents">
+        <div className="front-page-options">
+          <button
+            className={login}
+            onClick={() => {
+              setlogin("active-btn");
+              setRegisterClass("");
+              setregister(false);
+            }}
+          >
             Login
           </button>
-        </>
-      )}
-      {register === true && (
-        <>
-          <h1>register</h1>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Registration Code"
-            value={registrationCode}
-            onChange={(e) => setRegistrationCode(e.target.value)}
-            required
-          />
-          <button className="submit-btn" onClick={handleRegistration}>
-            Login
+          <button
+            className={registerClass}
+            onClick={() => {
+              setlogin("");
+              setRegisterClass("active-btn");
+              setregister(true);
+            }}
+          >
+            Register
           </button>
-        </>
-      )}
+        </div>
+        {register === false && (
+          <>
+            <input
+              type="text"
+              placeholder="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button className="submit-btn" onClick={handleLogin}>
+              login
+            </button>
+          </>
+        )}
+        {register === true && (
+          <>
+            <input
+              type="text"
+              placeholder="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="registration code"
+              value={registrationCode}
+              onChange={(e) => setRegistrationCode(e.target.value)}
+              required
+            />
+            <button className="submit-btn" onClick={handleRegistration}>
+              register
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

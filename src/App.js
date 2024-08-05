@@ -76,6 +76,15 @@ function App() {
       });
   };
 
+  const generateCode = () => {
+    axiosInstance
+      .post("https://blog-api-h1by.vercel.app/generate_code")
+      .then((res) => {
+        window.alert("Registration Code: " +res.data.code);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="App">
       {loggedIn === false && (
@@ -90,6 +99,7 @@ function App() {
               openEditor={openEditor}
               deletePost={deletePost}
               setloggedIn={setloggedIn}
+              generateCode={generateCode}
             />
           )}
           {editor === true && (

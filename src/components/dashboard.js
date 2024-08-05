@@ -1,32 +1,40 @@
 import React from "react";
 
-const Dashboard = ({ posts, setEditor, openEditor, deletePost, setloggedIn }) => {
+const Dashboard = ({
+  posts,
+  setEditor,
+  openEditor,
+  deletePost,
+  setloggedIn,
+  generateCode,
+}) => {
   return (
     <div className="dashboard">
       <nav>
-        <h1>Blog Dashboard</h1>
+        <h1>dashboard</h1>
         <div className="dash-control">
-        <button
-          className="new-btn"
-          onClick={() => {
-            setEditor(true);
-          }}
-        >
-          New Post
-        </button>
-        <button
-          className="logout-btn"
-          onClick={() => {
-            setloggedIn(false);
-            localStorage.removeItem("token");
-          }}
-        >
-          Log Out
-        </button>
-
+          <button className="new-btn gen-btn" onClick={generateCode}>
+            Generate Code
+          </button>
+          <button
+            className="new-btn"
+            onClick={() => {
+              setEditor(true);
+            }}
+          >
+            New Post
+          </button>
+          <button
+            className="logout-btn"
+            onClick={() => {
+              setloggedIn(false);
+              localStorage.removeItem("token");
+            }}
+          >
+            Log Out
+          </button>
         </div>
       </nav>
-      <hr />
       <div className="posts">
         {posts.map((post) => (
           <div className="post" key={post._id}>
