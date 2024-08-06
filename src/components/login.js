@@ -45,8 +45,7 @@ const Login = ({ loadPosts, setloggedIn }) => {
   return (
     <div className="front-page">
       <div className="headings">
-      {register === false && (<h1>Login</h1>)}
-      {register === true && (<h1>Register</h1>)}
+      <h1>dashboard</h1>
       </div>
       <div className="front-page-contents">
         <div className="front-page-options">
@@ -58,7 +57,7 @@ const Login = ({ loadPosts, setloggedIn }) => {
               setregister(false);
             }}
           >
-            Login
+            login
           </button>
           <button
             className={registerClass}
@@ -68,7 +67,7 @@ const Login = ({ loadPosts, setloggedIn }) => {
               setregister(true);
             }}
           >
-            Register
+            register
           </button>
         </div>
         {register === false && (

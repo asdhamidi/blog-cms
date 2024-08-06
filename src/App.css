@@ -43,9 +43,10 @@ button {
   padding: 0.5rem;
   font-weight: bold;
   border: 2px solid black;
-  background-color: transparent;
+  background-color: white;
   transition: all ease-in-out 250ms;
   color: black;
+  box-shadow: 4px 4px black;
 }
 
 button:hover {
@@ -118,6 +119,7 @@ hr {
   transition: all ease-in-out 250ms;
   background-color: #FFF;
   color: #000;
+  box-shadow: 5px 5px black;
 }
 
 .post-info {
@@ -181,7 +183,7 @@ hr {
   align-items: center;
   justify-content: center;
   align-self: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
   background-color: transparent;
   max-width: 36ch;  
   flex-direction: row;
@@ -189,9 +191,10 @@ hr {
 
 .front-page {
   gap: 1rem;
-  border: 1px solid #333;
+  box-shadow: 5px 5px black;
 }
 
+.headings h1 {font-size: 1.5rem;}
 .headings {
   rotate: -90deg;
   width: 1ch;
@@ -214,7 +217,7 @@ hr {
   .front-page input {
   width: 100%;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 0.5rem;
   border: none;
   color: black;
   border: 1px solid #BBB;
@@ -243,12 +246,22 @@ hr {
 }
 
 .back-btn {
-  background-color: red;
+  border-color: red;
   margin: 0;
 }
 
+.tox-tinymce {
+  width: 100%;
+  flex: 1;
+  border-radius:0;
+}
+
+label {
+  color: #000;
+}
+
 .submit-btn {
-  background-color: white;
+  border-color: greenyellow;
   margin: 0;
 }
 
@@ -259,6 +272,7 @@ hr {
 
 .front-page .submit-btn:hover {
   background-color: greenyellow;
+  border-color: white;
 }
 
 .editor-content {
@@ -300,11 +314,55 @@ hr {
 .front-page-options button{
   flex: 1;
   margin: 0;
-  border-color: transparent;
+  box-shadow: none;
+  border: none;
 }
 
 .active-btn {
-  box-shadow: 0 -4px greenyellow;
+  background-color: greenyellow;
+  color: white;
+}
+
+.delete-pop {
+  position: absolute;
+  margin: auto;
+  width: 36ch;
+  background-color: #FFF;
+  padding: 1rem;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 5px 5px black;
+  z-index: 3;
+}
+
+
+.delete-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.delete-controls button {
+  flex: 1;
+  margin: 0.25rem;
+}
+
+.delete-pop h2 {
+  margin: 0rem;
+}
+
+.blur {
+  position:fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  backdrop-filter: blur(3px);
+  z-index: 1;
 }
 
 @media only screen and (max-width: 600px) {

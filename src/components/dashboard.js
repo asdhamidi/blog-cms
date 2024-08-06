@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Dashboard = ({
   posts,
@@ -7,14 +7,45 @@ const Dashboard = ({
   deletePost,
   setloggedIn,
   generateCode,
+  loadPosts,
 }) => {
+  const [deletePop, setDeletePop] = useState(false);
+  const [contextPost, setContextPost] = useState(null);
+  const handleDelete = () => {
+    deletePost(contextPost);
+    setContextPost(null);
+    setDeletePop(false);
+    loadPosts();
+  };
+
   return (
     <div className="dashboard">
+      {deletePop === true && <div className="blur"></div>}
+      {deletePop === true && (
+        <div className="delete-pop">
+          <h2>Delete?</h2>
+          <div>Do you want to delete this post?</div>
+          <div className="delete-controls">
+            <button className="delete-btn" onClick={handleDelete}>
+              Yes
+            </button>
+            <button
+              className="submit-btn"
+              onClick={() => {
+                setContextPost(null);
+                setDeletePop(false);
+              }}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      )}
       <nav>
         <h1>dashboard</h1>
         <div className="dash-control">
           <button className="new-btn gen-btn" onClick={generateCode}>
-            Generate Code
+            generate code
           </button>
           <button
             className="new-btn"
@@ -22,7 +53,7 @@ const Dashboard = ({
               setEditor(true);
             }}
           >
-            New Post
+            new post
           </button>
           <button
             className="logout-btn"
@@ -31,7 +62,7 @@ const Dashboard = ({
               localStorage.removeItem("token");
             }}
           >
-            Log Out
+            log out
           </button>
         </div>
       </nav>
@@ -44,13 +75,16 @@ const Dashboard = ({
             </div>
             <div className="post-controls">
               <button className="edit-btn" onClick={() => openEditor(post._id)}>
-                Edit
+                edit
               </button>
               <button
                 className="delete-btn"
-                onClick={() => deletePost(post._id)}
+                onClick={() => {
+                  setDeletePop(true);
+                  setContextPost(post._id);
+                }}
               >
-                Delete
+                delete
               </button>
             </div>
           </div>

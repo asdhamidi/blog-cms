@@ -1,7 +1,7 @@
 import "./App.css";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard";
-import Editor from "./components/editor";
+import BlogEditor from "./components/editor";
 import React, { useState } from "react";
 import axiosInstance from "./components/api-handling";
 
@@ -100,10 +100,11 @@ function App() {
               deletePost={deletePost}
               setloggedIn={setloggedIn}
               generateCode={generateCode}
+              loadPosts={loadPosts}
             />
           )}
           {editor === true && (
-            <Editor
+            <BlogEditor
               post={currentPost}
               setPost={setCurrentPost}
               closeButton={closeEditor}
