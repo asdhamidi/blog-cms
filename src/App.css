@@ -145,6 +145,10 @@ hr {
   gap: 0.5rem;
 }
 
+.post-controls button {
+  flex: 1;
+}
+
 .edit-btn {
   border-color: skyblue;
   margin: 0;

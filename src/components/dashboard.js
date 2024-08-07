@@ -8,6 +8,8 @@ const Dashboard = ({
   setloggedIn,
   generateCode,
   loadPosts,
+  unpublishPost,
+  publishPost,
 }) => {
   const [deletePop, setDeletePop] = useState(false);
   const [contextPost, setContextPost] = useState(null);
@@ -86,6 +88,26 @@ const Dashboard = ({
               >
                 delete
               </button>
+              {post.published === "false" && (
+                <button
+                  className="submit-btn"
+                  onClick={() => {
+                    publishPost(post._id);
+                  }}
+                >
+                  publish
+                </button>
+              )}
+              {post.published === "true" && (
+                <button
+                  className="delete-btn"
+                  onClick={() => {
+                    unpublishPost(post._id);
+                  }}
+                >
+                  unpublish
+                </button>
+              )}
             </div>
           </div>
         ))}

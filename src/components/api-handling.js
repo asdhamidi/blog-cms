@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://blog-api-h1by.vercel.app/",
+  baseURL: "http://127.0.0.1:5000/",
   headers: {
     "Content-Type": "application/json",
   },

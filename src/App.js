@@ -49,7 +49,7 @@ function App() {
       });
   };
 
-  const publishPost = () => {
+  const createPost = () => {
     axiosInstance
       .post("/posts", currentPost)
       .then((response) => {
@@ -75,13 +75,41 @@ function App() {
 
   const loadPosts = () => {
     axiosInstance
-      .get("/posts")
+      .get("/posts-all")
       .then((response) => {
         setPosts(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const publishPost = (id) => {
+    axiosInstance
+      .put("/posts/" + id + "/publish")
+      .then((response) => {
+        setCurrentPost([]);
+        setEditor(false);
+        loadPosts();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    loadPosts();
+  };
+
+  const unpublishPost = (id) => {
+    axiosInstance
+      .put("/posts/" + id + "/unpublish")
+      .then((response) => {
+        setCurrentPost([]);
+        setEditor(false);
+        loadPosts();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    loadPosts();
   };
 
   const generateCode = () => {
@@ -109,6 +137,8 @@ function App() {
               setloggedIn={setloggedIn}
               generateCode={generateCode}
               loadPosts={loadPosts}
+              unpublishPost={unpublishPost}
+              publishPost={publishPost}
             />
           )}
           {editor === true && (
@@ -117,7 +147,7 @@ function App() {
               setPost={setCurrentPost}
               closeButton={closeEditor}
               updateButton={updatePost}
-              postButton={publishPost}
+              postButton={createPost}
             />
           )}
         </>
