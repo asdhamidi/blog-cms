@@ -17,15 +17,14 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
   box-sizing: border-box;
 }
 
 .App {
   height: 100vh;
-  width: 100%;
-  padding: 1rem;
+  width: auto;
   box-sizing: border-box;
   padding-top: 0;
   
@@ -60,10 +59,9 @@ nav  {
   gap: 0.5rem;
   width: 100%;
   padding: 1rem;
-  margin: 1rem 0;
-  backdrop-filter: blur(10px);
-  margin-top: 0;
+  box-sizing: border-box;
   position: sticky;
+  background-color: #FFF;
   top: 0;
   z-index: 3;
 }
@@ -103,6 +101,8 @@ hr {
   flex-wrap: wrap;
   gap: 1.5rem;
   padding-bottom: 1rem;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
 .post {
@@ -165,7 +165,7 @@ hr {
   gap: 1rem;
   background-color: #FFF;
   padding: 1rem;
-  height: auto;
+  height: 100%;
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
@@ -173,9 +173,8 @@ hr {
 }
 
 .editor {
-  background-color: transparent;
-  backdrop-filter: blur(5px);
-  height: 100%;
+  background-color: white;
+  max-height: 100vh;
 }
 
 .front-page, .front-page-options {
@@ -192,6 +191,7 @@ hr {
 .front-page {
   gap: 1rem;
   box-shadow: 5px 5px black;
+  height: fit-content;
 }
 
 .headings h1 {font-size: 1.5rem;}
@@ -265,6 +265,11 @@ label {
   margin: 0;
 }
 
+.preview-btn {
+  border-color: salmon;
+  margin: 0 0.5rem;
+}
+
 .front-page .submit-btn {
   width: 100%;
   border: 2px solid greenyellow;
@@ -272,7 +277,6 @@ label {
 
 .front-page .submit-btn:hover {
   background-color: greenyellow;
-  border-color: white;
 }
 
 .editor-content {
@@ -326,7 +330,7 @@ label {
   color: white;
 }
 
-.delete-pop {
+.delete-pop{
   position: absolute;
   margin: auto;
   width: 36ch;
@@ -371,12 +375,48 @@ label {
 .quill {
   background-color: #FFF;
   color: #000;
-  width: 100%;
-  height: 50%;
+  width: auto;
+  height: 70%;
+  margin-bottom: 1rem;
 }
 
 .quill button {
   box-shadow: none;
+}
+
+.blog-preview {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #FFF;
+  text-wrap: wrap;
+  box-shadow: 5px 5px black;
+  padding: 1rem;
+  padding-top: 0;
+  overflow-y: scroll;
+  z-index: 3;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+
+.blog-preview img {
+  width: 100%;
+  height: auto  ;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+  background-color: #FFF;
+  border-bottom: 2px solid black;
+  padding: 0.5rem 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -395,5 +435,17 @@ label {
   .posts {
     justify-content: center;
     gap: 0.5rem;
+  }
+
+  .editor h1 {
+    font-size: 0.75rem;
+    flex: 1;
+    text-wrap: wrap;
+    box-sizing: border-box;
+    padding: 0 1rem;
+  }
+
+  .topbar h1 {
+    font-size: 1rem;
   }
 }

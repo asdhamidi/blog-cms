@@ -1,81 +1,107 @@
 # Blog CMS
-
-## Overview
 This is a react-based application I developed to manage my blog which can be read over at my portfolio website.
+Built using React, it allows users to create, edit, delete, and manage blog posts. It includes features such as a login system, blog editor with a rich text editor, and a dashboard for managing posts.
 
-## Project Structure
-The application is composed of several key components:
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Usage](#usage)
+- [API Integration](#api-integration)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-1. **App Component**: The main component of the application, managing the state and rendering either the login page or the dashboard based on the user's authentication status.
+## Features
+- **User Authentication:** Secure login and registration system.
+- **Blog Management:** Create, edit, delete, and manage blog posts.
+- **Rich Text Editor:** Utilizes ReactQuill for content creation.
+- **Dashboard:** Overview of all posts with options to edit, delete, or create new posts.
+- **Preview Mode:** Preview blog posts before publishing.
 
-2. **Login Component**: Handles user authentication. It sends login credentials to the backend, stores the received JWT token, and updates the authentication state of the application.
+## Technologies Used
+- **Frontend:** React, React Router, ReactQuill
+- **API Handling:** Axios
+- **Styling:** CSS
+- **Build & Deployment:** React Scripts, gh-pages
 
-3. **Dashboard Component**: Displays a list of blog posts fetched from the backend. It allows users to create new posts, edit existing posts, or delete posts.
+## Getting Started
 
-4. **Editor Component**: Provides a rich text editor (using React Quill) for creating or editing blog posts. Users can enter the title and content of the post and either save changes to an existing post or publish a new post.
+### Prerequisites
+Before you begin, ensure you have the following installed:
+- Node.js
+- npm (Node Package Manager)
 
-5. **API Handling (axiosInstance)**: An Axios instance is created to handle API requests, including automatic inclusion of JWT tokens in headers for authenticated routes.
+### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/asdhamidi/blog-cms.git
+   cd blog-cms
+   ```
 
-## Installation
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-repo/react-blog-app.git
-    cd react-blog-app
-    ```
+### Running the Application
+1. **Start the development server:**
+   ```bash
+   npm start
+   ```
+   This will run the app in the development mode, and you can view it at `http://localhost:3000`.
 
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+2. **Build the app for production:**
+   ```bash
+   npm run build
+   ```
+   The build is optimized and ready for deployment.
 
-3. **Run the development server**:
-    ```bash
-    npm start
-    ```
+## Usage
+1. **Login/Register:**
+   - Use the login form to access the dashboard.
+   - Register a new account if you don’t have one using the registration code.
 
+2. **Dashboard:**
+   - View all blog posts.
+   - Create new posts, or edit/delete existing ones.
 
-## Components
-
-### App Component (`App.js`)
-- Manages the state of posts, editor visibility, current post, and user authentication.
-- Loads posts from the backend when the user logs in.
-- Controls the visibility of the login page, dashboard, and editor based on the state.
-
-### Login Component (`Login.js`)
-- Handles user input for username and password.
-- Sends a login request to the backend.
-- On successful login, stores the JWT token in `localStorage` and updates the logged-in state.
-
-### Dashboard Component (`Dashboard.js`)
-- Displays a list of blog posts fetched from the backend.
-- Provides buttons to create a new post, edit a post, or delete a post.
-- Allows the user to log out by clearing the JWT token from `localStorage`.
-
-### Editor Component (`Editor.js`)
-- Provides an interface for creating or editing blog posts using React Quill.
-- Handles saving updates to existing posts or publishing new posts.
-
-### API Handling (`api-handling.js`)
-- Configures an Axios instance for making HTTP requests to the backend API.
-- Automatically adds the JWT token to the Authorization header for authenticated requests.
-- Manages requests for fetching posts, creating new posts, updating existing posts, and deleting posts.
+3. **Editor:**
+   - Use the rich text editor to create and format your blog content.
+   - Preview the post before publishing.
 
 ## API Integration
+The app communicates with a backend API for managing blog posts and user authentication. The base URL for the API is set to `https://blog-api-h1by.vercel.app/`. 
 
-This application is designed to work with a RESTful API. The following endpoints are used:
+### API Endpoints
+- `GET /posts`: Fetch all blog posts.
+- `GET /posts/:id`: Fetch a specific blog post.
+- `POST /posts`: Create a new blog post.
+- `PUT /posts/:id`: Update an existing blog post.
+- `DELETE /posts/:id`: Delete a blog post.
+- `POST /login`: User login.
+- `POST /register`: User registration.
 
-- **POST** `/login`: Authenticate user and retrieve JWT token.
-- **GET** `/posts`: Fetch all blog posts.
-- **GET** `/posts/:id`: Fetch a specific blog post by ID.
-- **POST** `/posts`: Create a new blog post.
-- **PUT** `/posts/:id`: Update an existing blog post by ID.
-- **DELETE** `/posts/:id`: Delete a blog post by ID.
+## Project Structure
+```bash
+src/
+│
+├── components/
+│   ├── api-handling.js  # Axios instance with API configuration
+│   ├── dashboard.js     # Dashboard component
+│   ├── editor.js        # Blog editor component
+│   ├── login.js         # Login and registration component
+│   ├── preview.js       # Preview component
+│
+├── App.css              # Global styles
+├── App.js               # Main app component
+└── index.js             # Entry point of the app
+```
 
-## Environment Variables
 
-The base URL for the backend API is hardcoded in `api-handling.js`. You can modify it according to your backend configuration.
 
 ## License
-
 This project is licensed under... I don't know which license. Use it, don't use it, I couldn't care less.

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import Preview from "./preview";
 
 const BlogEditor = ({
   post,
@@ -9,26 +10,37 @@ const BlogEditor = ({
   postButton,
   updateButton,
 }) => {
-  const [content, setContent] = useState(post.content);
+  const [preview, setPreview] = useState(false);
 
   return (
     <div className="editor">
+      {preview === true && (
+        <>
+          <Preview content={post.content} setPreview={setPreview} />
+          <div className="blur"></div>
+        </>
+      )}
       <div className="editor-controls">
         <button className="back-btn" onClick={closeButton}>
           Back
         </button>
         {post._id !== undefined && <h1>editing {post.title}</h1>}
         {post._id === undefined && <h1>new blog</h1>}
-        {post._id !== undefined && (
-          <button className="submit-btn" onClick={updateButton}>
-            update
+        <div>
+          <button className="preview-btn" onClick={() => setPreview(true)}>
+            Preview
           </button>
-        )}
-        {post._id === undefined && (
-          <button className="submit-btn" onClick={postButton}>
-            post
-          </button>
-        )}
+          {post._id !== undefined && (
+            <button className="submit-btn" onClick={updateButton}>
+              update
+            </button>
+          )}
+          {post._id === undefined && (
+            <button className="submit-btn" onClick={postButton}>
+              post
+            </button>
+          )}
+        </div>
       </div>
       <hr />
       <div className="editor-content">
