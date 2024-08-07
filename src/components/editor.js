@@ -22,13 +22,13 @@ const BlogEditor = ({
       )}
       <div className="editor-controls">
         <button className="back-btn" onClick={closeButton}>
-          Back
+          back
         </button>
         {post._id !== undefined && <h1>editing {post.title}</h1>}
         {post._id === undefined && <h1>new blog</h1>}
         <div>
           <button className="preview-btn" onClick={() => setPreview(true)}>
-            Preview
+            preview
           </button>
           {post._id !== undefined && (
             <button className="submit-btn" onClick={updateButton}>

@@ -20,6 +20,15 @@ const Dashboard = ({
     loadPosts();
   };
 
+  const [theme, setTheme] = useState("🔆");
+
+  function changeTheme() {
+    if (theme === "🔆") setTheme("🌙");
+    else setTheme("🔆");
+
+    document.body.classList.toggle("dark");
+  }
+
   return (
     <div className="dashboard">
       {deletePop === true && <div className="blur"></div>}
@@ -65,6 +74,9 @@ const Dashboard = ({
             }}
           >
             log out
+          </button>
+          <button className="theme-btn" onClick={changeTheme}>
+            {theme}
           </button>
         </div>
       </nav>
