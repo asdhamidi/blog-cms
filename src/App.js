@@ -2,7 +2,7 @@ import "./App.css";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard";
 import BlogEditor from "./components/editor";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "./components/api-handling";
 
 function App() {
@@ -10,6 +10,14 @@ function App() {
   const [editor, setEditor] = useState(false);
   const [currentPost, setCurrentPost] = useState([]);
   const [loggedIn, setloggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setloggedIn(true);
+      loadPosts();
+    }
+  }, []);
 
   const openEditor = (id) => {
     axiosInstance
@@ -80,7 +88,7 @@ function App() {
     axiosInstance
       .post("https://blog-api-h1by.vercel.app/generate_code")
       .then((res) => {
-        window.alert("Registration Code: " +res.data.code);
+        window.alert("Registration Code: " + res.data.code);
       })
       .catch((err) => console.error(err));
   };

@@ -293,11 +293,14 @@ label {
   box-sizing: border-box;
   width: 100%;
 }
-.quill, .ql-container {
+.content-edit {
+  border: 1px solid gray;
   background-color: #fff;
+  padding: 12px 15px;
   color: #000;
   width: 100%;
-  height: 100%;
+  height: auto;
+  box-sizing: border-box;
 }
 .front-page-options {
   width: 100%;
@@ -363,6 +366,17 @@ label {
   top: 0;
   backdrop-filter: blur(3px);
   z-index: 1;
+}
+
+.quill {
+  background-color: #FFF;
+  color: #000;
+  width: 100%;
+  height: 50%;
+}
+
+.quill button {
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 600px) {

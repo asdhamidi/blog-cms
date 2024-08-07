@@ -1,5 +1,5 @@
-import React from "react";
-import { Editor } from "@tinymce/tinymce-react";
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const BlogEditor = ({
@@ -9,6 +9,8 @@ const BlogEditor = ({
   postButton,
   updateButton,
 }) => {
+  const [content, setContent] = useState(post.content);
+
   return (
     <div className="editor">
       <div className="editor-controls">
@@ -42,26 +44,36 @@ const BlogEditor = ({
             }));
           }}
         ></input>
-        <Editor
-          apiKey="8ng6q3yo50e24pazz6qmd84l6nt0hb0gamt3m7hqfen9jzio"
-          init={{
-            plugins:
-              "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
-            toolbar:
-              "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-            tinycomments_mode: "embedded",
-            tinycomments_author: "Author name",
-            mergetags_list: [
-              { value: "First.Name", title: "First Name" },
-              { value: "Email", title: "Email" },
+        <ReactQuill
+          theme="snow"
+          value={post.content}
+          modules={{
+            toolbar: [
+              [{ header: [1, 2, 3, 4, false] }],
+              [{ size: ["small", false, "large", "huge"] }],
+              ["bold", "italic", "underline", "strike", "blockquote"],
+              [
+                { list: "ordered" },
+                { list: "bullet" },
+                { list: "check" },
+                { indent: "-1" },
+                { indent: "+1" },
+              ],
+              ["image", "code-block"],
+              [{ script: "sub" }, { script: "super" }],
+              [{ color: [] }, { background: [] }],
+              [{ align: [] }],
+              ["clean"],
             ],
-            ai_request: (request, respondWith) =>
-              respondWith.string(() =>
-                Promise.reject("See docs to implement AI Assistant")
-              ),
           }}
-          initialValue={post.content}
+          onChange={(value) => {
+            setPost((prevState) => ({
+              ...prevState,
+              content: value,
+            }));
+          }}
         />
+        ;
       </div>
     </div>
   );
