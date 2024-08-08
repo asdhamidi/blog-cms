@@ -53,7 +53,7 @@ const Dashboard = ({
         </div>
       )}
       <nav>
-        <h1>dashboard</h1>
+        <h1>hi, {localStorage.getItem("user")}!</h1>
         <div className="dash-control">
           <button className="new-btn gen-btn" onClick={generateCode}>
             generate code
@@ -71,6 +71,7 @@ const Dashboard = ({
             onClick={() => {
               setloggedIn(false);
               localStorage.removeItem("token");
+              localStorage.removeItem("user");
             }}
           >
             log out
@@ -112,7 +113,7 @@ const Dashboard = ({
               )}
               {post.published === "true" && (
                 <button
-                  className="delete-btn"
+                  className="upub-btn"
                   onClick={() => {
                     unpublishPost(post._id);
                   }}

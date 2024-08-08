@@ -30,7 +30,7 @@ h1, h2, p, a, button, small {
   color: var(--text-color)
 }
 
-input {
+input, select {
   background-color: var(--text-color-highlight);
   color: var(--text-color);
 }
@@ -63,7 +63,7 @@ body {
   flex-direction: column;
   width: 100%;
 }
-button {
+button, select {
   border: none;
   padding: 0.5rem;
   font-weight: bold;
@@ -84,7 +84,7 @@ nav  {
   justify-content: space-between;
   gap: 0.5rem;
   width: 100%;
-  padding: 1rem;
+  padding: 0 1rem;
   box-sizing: border-box;
   position: sticky;
   background-color: var(--text-color-highlight);
@@ -239,14 +239,19 @@ hr {
   gap: 1rem;
 }
 
-  .front-page input {
+  .front-page input, select {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5rem;
   border: none;
   color: var(--text-color);
   border: 1px solid #BBB;
-  
+}
+
+select {
+  width: auto;
+  margin-right: 0.5rem;
+  border: 2px solid var(--text-color);
 }
 
 .front-page input:hover {
@@ -355,6 +360,10 @@ label {
   color: var(--text-color-highlight);
 }
 
+.upub-btn {
+  border-color: orange;
+}
+
 .delete-pop{
   position: absolute;
   margin: auto;
@@ -399,12 +408,19 @@ label {
 
 .quill {
   background-color: var(--text-color-highlight);
-  color: #000;
+  color: var(--text-color);
   width: auto;
   height: 70%;
   margin-bottom: 1rem;
 }
 
+.ql-snow .ql-stroke {
+  fill: none;
+  stroke: var(--text-color-light);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
 .quill button {
   box-shadow: none;
 }
@@ -442,8 +458,20 @@ label {
   background-color: var(--text-color-highlight);
   border-bottom: 2px solid var(--text-color);
   padding: 0.5rem 0;
+  width: 100%;
 }
 
+.preview-content-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.preview-content-phone p{
+  width: 500px;
+  align-self: center;
+}
 @media only screen and (max-width: 600px) {
   nav {
     flex-direction: column;

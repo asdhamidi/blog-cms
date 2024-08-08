@@ -21,12 +21,17 @@ const Login = ({ loadPosts, setloggedIn }) => {
       })
       .then((response) => {
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", username);
         setloggedIn(true);
         setLoggigIn(false);
         loadPosts();
       })
       .catch((error) => {
         console.error("Login failed:", error);
+        window.alert("Login failed");
+        setUsername("");
+        setPassword("");
+        setLoggigIn(false);
       });
   };
 
@@ -45,7 +50,12 @@ const Login = ({ loadPosts, setloggedIn }) => {
         setLoggigIn(false);
       })
       .catch((error) => {
-        console.error("Login failed:", error);
+        setLoggigIn(false);
+        console.error("Registration failed:", error);
+        window.alert("Registration failed");
+        setUsername("");
+        setPassword("");
+        setRegistrationCode("");
       });
   };
 
