@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import BeatLoader from "react-spinners/ClipLoader";
+import Popup from "./pop";
+
+const override = {
+  borderColor: "#666",
+};
 
 const Dashboard = ({
   posts,
@@ -10,17 +16,19 @@ const Dashboard = ({
   loadPosts,
   unpublishPost,
   publishPost,
+  loading,
+  setLoading,
 }) => {
   const [deletePop, setDeletePop] = useState(false);
   const [contextPost, setContextPost] = useState(null);
+  const [theme, setTheme] = useState("🔆");
+
   const handleDelete = () => {
     deletePost(contextPost);
     setContextPost(null);
     setDeletePop(false);
     loadPosts();
   };
-
-  const [theme, setTheme] = useState("🔆");
 
   function changeTheme() {
     if (theme === "🔆") setTheme("🌙");
@@ -31,26 +39,32 @@ const Dashboard = ({
 
   return (
     <div className="dashboard">
+      {loading === true && (
+        <div className="front-page loading-screen">
+          <BeatLoader
+            className="loading-spinner"
+            loading={true}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            cssOverride={override}
+          />
+        </div>
+      )}
+      {loading === true && <div className="blur"></div>}
       {deletePop === true && <div className="blur"></div>}
       {deletePop === true && (
-        <div className="delete-pop">
-          <h2>Delete?</h2>
-          <div>Do you want to delete this post?</div>
-          <div className="delete-controls">
-            <button className="delete-btn" onClick={handleDelete}>
-              Yes
-            </button>
-            <button
-              className="submit-btn"
-              onClick={() => {
-                setContextPost(null);
-                setDeletePop(false);
-              }}
-            >
-              No
-            </button>
-          </div>
-        </div>
+        <Popup
+          title="delete?"
+          ques="do you want to delete this?"
+          yesHandler={handleDelete}
+          yesText="yes"
+          noHandler={() => {
+            setContextPost(null);
+            setDeletePop(false);
+          }}
+          noText="no"
+        />
       )}
       <nav>
         <h1>hi, {localStorage.getItem("user")}!</h1>

@@ -10,6 +10,7 @@ function App() {
   const [editor, setEditor] = useState(false);
   const [currentPost, setCurrentPost] = useState([]);
   const [loggedIn, setloggedIn] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -18,10 +19,8 @@ function App() {
       loadPosts();
     }
 
-    const mq = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    );
-  
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+
     if (mq.matches) {
       document.body.classList.toggle("dark");
     }
@@ -93,11 +92,12 @@ function App() {
   };
 
   const publishPost = (id) => {
+    setLoading(true);
     axiosInstance
       .put("/posts/" + id + "/publish")
       .then((response) => {
+        setLoading(false);
         setCurrentPost([]);
-        setEditor(false);
         loadPosts();
       })
       .catch((error) => {
@@ -107,11 +107,12 @@ function App() {
   };
 
   const unpublishPost = (id) => {
+    setLoading(true);
     axiosInstance
       .put("/posts/" + id + "/unpublish")
       .then((response) => {
+        setLoading(false);
         setCurrentPost([]);
-        setEditor(false);
         loadPosts();
       })
       .catch((error) => {
@@ -121,14 +122,15 @@ function App() {
   };
 
   const generateCode = () => {
+    setLoading(true);
     axiosInstance
       .post("https://blog-api-h1by.vercel.app/generate_code")
       .then((res) => {
         window.alert("Registration Code: " + res.data.code);
+        setLoading(false);
       })
       .catch((err) => console.error(err));
   };
-
 
   return (
     <div className="App">
@@ -148,6 +150,8 @@ function App() {
               loadPosts={loadPosts}
               unpublishPost={unpublishPost}
               publishPost={publishPost}
+              loading={loading}
+              setLoading={setLoading}
             />
           )}
           {editor === true && (

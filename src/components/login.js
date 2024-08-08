@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import axiosInstance from "./api-handling";
 import BeatLoader from "react-spinners/ClipLoader";
 
+const override = {
+  borderColor: "#666",
+};
+
 const Login = ({ loadPosts, setloggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -67,6 +71,7 @@ const Login = ({ loadPosts, setloggedIn }) => {
         size={60}
         aria-label="Loading Spinner"
         data-testid="loader"
+        cssOverride={override}
       />
       {loggigIn === false && (
         <>

@@ -364,7 +364,7 @@ label {
   border-color: orange;
 }
 
-.delete-pop{
+.pop, .loading-screen{
   position: absolute;
   margin: auto;
   width: 36ch;
@@ -378,22 +378,30 @@ label {
   gap: 1rem;
   box-shadow: 5px 5px var(--text-color);
   z-index: 3;
+  top: auto;
+  left: auto;
+}
+
+.loading-screen {
+  height: auto;
+  width: 5rem;
+  padding: 1rem;
 }
 
 
-.delete-controls {
+.controls {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
 }
 
-.delete-controls button {
+.controls button {
   flex: 1;
   margin: 0.25rem;
 }
 
-.delete-pop h2 {
+.pop h2 {
   margin: 0rem;
 }
 

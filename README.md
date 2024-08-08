@@ -2,6 +2,13 @@
 This is a react-based application I developed to manage my blog which can be read over at my portfolio website.
 Built using React, it allows users to create, edit, delete, and manage blog posts. It includes features such as a login system, blog editor with a rich text editor, and a dashboard for managing posts.
 
+## Preview
+
+![Login/Register Screen](./src/assets/login.png)
+*Login/Register Screen*
+
+![Dashboard](./src/assets/dashboard.png)
+*Dashboard*
 ## Table of Contents
 - [Features](#features)
 - [Technologies Used](#technologies-used)
